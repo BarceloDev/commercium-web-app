@@ -100,182 +100,186 @@ export default function Register({ showPassword, setShowPassword }) {
   }
 
   return (
-    <div className="w-screen h-full flex flex-col justify-center items-center gap-4 px-4 py-4 text-center">
-      <div className="w-full flex justify-starts">
-        <Link to={"/"}>
-          <i className="bi bi-arrow-left px-4 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in"></i>
-        </Link>
-      </div>
-      <img src={logo} alt="" />
-      <p className="font-semibold">Sign up and start managing your sales.</p>
-      {message && (
-        <p className="w-full p-2 rounded-xl border-2 border-green-400 text-green-400 font-bold">
-          {message}
-        </p>
-      )}
-      <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          required
-          placeholder="Name"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.name && (
-          <p className="text-red-500 text-sm">{errors.name[0]}</p>
+    <div className="bg-blue-500 flex justify-center items-center">
+      <div className="w-screen md:w-200 h-full flex flex-col justify-center items-center gap-4 px-4 md:px-8 py-4 text-center bg-white">
+        <div className="w-full flex justify-starts">
+          <Link to={"/"}>
+            <i className="bi bi-arrow-left px-4 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in"></i>
+          </Link>
+        </div>
+        <img src={logo} alt="" />
+        <p className="font-semibold">Sign up and start managing your sales.</p>
+        {message && (
+          <p className="w-full p-2 rounded-xl border-2 border-green-400 text-green-400 font-bold">
+            {message}
+          </p>
         )}
-        <input
-          type="text"
-          required
-          placeholder="User name"
-          value={userName}
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.user_name && (
-          <p className="text-red-500 text-sm">{errors.user_name[0]}</p>
-        )}
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email[0]}</p>
-        )}
-        <input
-          type="email"
-          required
-          placeholder="Confirm your email"
-          value={emailConfirm}
-          onChange={(e) => {
-            setEmailConfirm(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.email_c && (
-          <p className="text-red-500 text-sm">{errors.email_c[0]}</p>
-        )}
-        <input
-          type={showPassword ? "text" : "password"}
-          required
-          placeholder="Password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password[0]}</p>
-        )}
-        <div className="flex gap-2">
+        <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
-            type={showPassword ? "text" : "password"}
+            type="text"
             required
-            placeholder="Confirm your password"
-            value={passwordConfirm}
+            placeholder="Name"
+            value={name}
             onChange={(e) => {
-              setPasswordConfirm(e.target.value);
+              setName(e.target.value);
             }}
             className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
           />
-          <button
-            type="button"
-            onClick={() => {
-              setShowPassword((prev) => !prev);
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="User name"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
             }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.user_name && (
+            <p className="text-red-500 text-sm">{errors.user_name[0]}</p>
+          )}
+          <input
+            type="email"
+            required
+            placeholder="Email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email[0]}</p>
+          )}
+          <input
+            type="email"
+            required
+            placeholder="Confirm your email"
+            value={emailConfirm}
+            onChange={(e) => {
+              setEmailConfirm(e.target.value);
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.email_c && (
+            <p className="text-red-500 text-sm">{errors.email_c[0]}</p>
+          )}
+          <input
+            type={showPassword ? "text" : "password"}
+            required
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password[0]}</p>
+          )}
+          <div className="flex gap-2">
+            <input
+              type={showPassword ? "text" : "password"}
+              required
+              placeholder="Confirm your password"
+              value={passwordConfirm}
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
+              }}
+              className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                setShowPassword((prev) => !prev);
+              }}
+            >
+              <i
+                className={`bi ${showPassword ? "bi-eye-fill" : "bi-eye-slash-fill"}`}
+              ></i>
+            </button>
+          </div>
+          {errors.password_c && (
+            <p className="text-red-500 text-sm">{errors.password_c[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="Telephone"
+            value={telephone}
+            onChange={(e) => {
+              setTelephone(e.target.value);
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.telephone && (
+            <p className="text-red-500 text-sm">{errors.telephone[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="CEP"
+            value={cep}
+            onChange={(e) => {
+              setCep(e.target.value.replace(/\D/g, ""));
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.cep && (
+            <p className="text-red-500 text-sm">{errors.cep[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="City"
+            value={city}
+            onChange={(e) => {
+              setCep(e.target.value);
+            }}
+            readOnly
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.city && (
+            <p className="text-red-500 text-sm">{errors.city[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="State"
+            value={state}
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
+            readOnly
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.state && (
+            <p className="text-red-500 text-sm">{errors.state[0]}</p>
+          )}
+          <input
+            type="text"
+            required
+            placeholder="CPF/CNPJ"
+            value={document}
+            onChange={(e) => {
+              setDocument(e.target.value);
+            }}
+            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+          />
+          {errors.cpf_cnpj && (
+            <p className="text-red-500 text-sm">{errors.cpf_cnpj[0]}</p>
+          )}
+          <button
+            disabled={loading}
+            className="w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in p-2 rounded-xl"
           >
-            <i
-              className={`bi ${showPassword ? "bi-eye-fill" : "bi-eye-slash-fill"}`}
-            ></i>
+            {loading ? "Loading..." : "Register"}
           </button>
-        </div>
-        {errors.password_c && (
-          <p className="text-red-500 text-sm">{errors.password_c[0]}</p>
-        )}
-        <input
-          type="text"
-          required
-          placeholder="Telephone"
-          value={telephone}
-          onChange={(e) => {
-            setTelephone(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.telephone && (
-          <p className="text-red-500 text-sm">{errors.telephone[0]}</p>
-        )}
-        <input
-          type="text"
-          required
-          placeholder="CEP"
-          value={cep}
-          onChange={(e) => {
-            setCep(e.target.value.replace(/\D/g, ""));
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.cep && <p className="text-red-500 text-sm">{errors.cep[0]}</p>}
-        <input
-          type="text"
-          required
-          placeholder="City"
-          value={city}
-          onChange={(e) => {
-            setCep(e.target.value);
-          }}
-          readOnly
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.city && (
-          <p className="text-red-500 text-sm">{errors.city[0]}</p>
-        )}
-        <input
-          type="text"
-          required
-          placeholder="State"
-          value={state}
-          onChange={(e) => {
-            setState(e.target.value);
-          }}
-          readOnly
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.state && (
-          <p className="text-red-500 text-sm">{errors.state[0]}</p>
-        )}
-        <input
-          type="text"
-          required
-          placeholder="CPF/CNPJ"
-          value={document}
-          onChange={(e) => {
-            setDocument(e.target.value);
-          }}
-          className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-        />
-        {errors.cpf_cnpj && (
-          <p className="text-red-500 text-sm">{errors.cpf_cnpj[0]}</p>
-        )}
-        <button
-          disabled={loading}
-          className="w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in p-2 rounded-xl"
-        >
-          {loading ? "Loading..." : "Register"}
-        </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

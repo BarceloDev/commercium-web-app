@@ -60,89 +60,94 @@ export default function Login({ showPassword, setShowPassword }) {
   }
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center gap-4 px-4 text-center">
-      {" "}
-      <img src={logo} alt="" />{" "}
-      <p className="font-semibold">
+    <div className="bg-blue-500 flex items-center justify-center h-screen">
+      <div className="w-screen md:w-200 h-screen flex flex-col justify-center items-center gap-4 px-4 md:px-8 text-center md:bg-white">
         {" "}
-        Log in with your account to access the system.{" "}
-      </p>{" "}
-      {message && (
-        <p
-          className={`w-full p-2 rounded-xl border-2 font-bold ${messageType === "success" ? "border-green-400 text-green-400" : "border-red-400 text-red-400"}`}
-        >
+        <img src={logo} alt="" />{" "}
+        <p className="font-semibold">
           {" "}
-          {message}{" "}
-        </p>
-      )}{" "}
-      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
-        {" "}
-        <div>
+          Log in with your account to access the system.{" "}
+        </p>{" "}
+        {message && (
+          <p
+            className={`w-full p-2 rounded-xl border-2 font-bold ${messageType === "success" ? "border-green-400 text-green-400" : "border-red-400 text-red-400"}`}
+          >
+            {" "}
+            {message}{" "}
+          </p>
+        )}{" "}
+        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           {" "}
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
-          />{" "}
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1"> {errors.email[0]} </p>
-          )}{" "}
-        </div>{" "}
-        <div>
-          {" "}
-          <div className="flex gap-2">
+          <div>
             {" "}
             <input
-              type={showPassword ? "text" : "password"}
+              type="email"
               required
-              placeholder="Password"
-              value={password}
+              placeholder="Email"
+              value={email}
               onChange={(e) => {
-                setPassword(e.target.value);
+                setEmail(e.target.value);
               }}
               className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
             />{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setShowPassword((prev) => !prev);
-              }}
-            >
-              {" "}
-              <i
-                className={`bi ${showPassword ? "bi-eye-fill" : "bi-eye-slash-fill"}`}
-              ></i>{" "}
-            </button>{" "}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1"> {errors.email[0]} </p>
+            )}{" "}
           </div>{" "}
-          {errors.password && (
-            <p className="text-red-500 text-sm mt-1"> {errors.password[0]} </p>
-          )}{" "}
-        </div>{" "}
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
-        >
+          <div>
+            {" "}
+            <div className="flex gap-2">
+              {" "}
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                className="w-full p-2 rounded-xl border border-slate-600 outline-none focus:border-blue-600"
+              />{" "}
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPassword((prev) => !prev);
+                }}
+              >
+                {" "}
+                <i
+                  className={`bi ${showPassword ? "bi-eye-fill" : "bi-eye-slash-fill"}`}
+                ></i>{" "}
+              </button>{" "}
+            </div>{" "}
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {" "}
+                {errors.password[0]}{" "}
+              </p>
+            )}{" "}
+          </div>{" "}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-150 ease-in p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {" "}
+            {loading ? "Loading..." : "Login"}{" "}
+          </button>{" "}
+        </form>{" "}
+        <p>
           {" "}
-          {loading ? "Loading..." : "Login"}{" "}
-        </button>{" "}
-      </form>{" "}
-      <p>
-        {" "}
-        Don't have an account?{" "}
-        <Link
-          to={"/register"}
-          className="text-blue-500 hover:underline hover:text-blue-700 transition duration-150 ease-in"
-        >
-          {" "}
-          Register{" "}
-        </Link>{" "}
-      </p>{" "}
+          Don't have an account?{" "}
+          <Link
+            to={"/register"}
+            className="text-blue-500 hover:underline hover:text-blue-700 transition duration-150 ease-in"
+          >
+            {" "}
+            Register{" "}
+          </Link>{" "}
+        </p>{" "}
+      </div>
     </div>
   );
 }

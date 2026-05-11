@@ -40,7 +40,7 @@ export default function MainScreen() {
   return (
     <div>
       <Header setContent={setContent} />
-      <div className="py-40">{show}</div>
+      <div className="pt-40 pb-10">{show}</div>
     </div>
   );
 }
