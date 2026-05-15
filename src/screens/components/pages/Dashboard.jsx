@@ -17,7 +17,7 @@ import {
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function Dashboard() {
+export default function Dashboard({ theme }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const [sales, setSales] = useState([]);
@@ -71,12 +71,16 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="w-screen min-h-screen p-6 flex flex-col gap-6">
+    <div
+      className={`w-screen min-h-screen p-6 flex flex-col gap-6 ${theme === "light" ? "text-slate-950 bg-slate-50" : "text-slate-50 bg-slate-800"} transition duration-150 ease-in`}
+    >
       <h1 className="font-bold text-2xl md:text-4xl text-center">
         Welcome, <span className="text-blue-500">{user.user_name}</span>!
       </h1>
 
-      <p className="font-semibold text-center md:text-2xl">
+      <p
+        className={`font-semibold text-center md:text-2xl ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+      >
         See how your sales are going.
       </p>
 
@@ -85,14 +89,22 @@ export default function Dashboard() {
         onChange={(e) => setTimeframe(e.target.value)}
         className="border rounded p-2 md:self-start md:w-50"
       >
-        <option value="weekly">Weekly</option>
+        <option value="weekly" className="text-slate-950">
+          Weekly
+        </option>
 
-        <option value="monthly">Monthly</option>
+        <option value="monthly" className="text-slate-950">
+          Monthly
+        </option>
 
-        <option value="yearly">Yearly</option>
+        <option value="yearly" className="text-slate-950">
+          Yearly
+        </option>
       </select>
 
-      <p className="text-gray-700">
+      <p
+        className={`text-gray-700 ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+      >
         Your best result was during{" "}
         <span className="font-bold text-blue-500">{bestSale?.label}</span>,
         generating <span className="font-bold">${bestSale?.total || 0}</span>.
@@ -102,8 +114,11 @@ export default function Dashboard() {
         <div className="w-full overflow-x-auto flex flex-col md:flex-row justify-around">
           <BarChart width={1200} height={400} data={sales}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="label" />
-            <YAxis />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: theme === "light" ? "#1e293b" : "#f8fafc" }}
+            />
+            <YAxis tick={{ fill: theme === "light" ? "#1e293b" : "#f8fafc" }} />
             <Tooltip />
             <Bar dataKey="total">
               {sales.map((entry, index) => (
@@ -118,12 +133,14 @@ export default function Dashboard() {
         <div className="w-screen flex flex-col items-center gap-2">
           <div className="flex flex-col gap-2 px-6">
             <h2 className="text-2xl font-bold">Sales Distribution</h2>
-            <p className="text-gray-600">
+            <p
+              className={`text-gray-600 ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+            >
               This chart shows how your sales are distributed throughout the
               selected period.
             </p>
           </div>
-          <ResponsiveContainer width="100%" height={600}>
+          <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
                 data={sales}
@@ -131,7 +148,7 @@ export default function Dashboard() {
                 nameKey="label"
                 cx="50%"
                 cy="50%"
-                outerRadius={150}
+                outerRadius={"50%"}
                 fill="#3b82f6"
                 label
               >
@@ -150,13 +167,18 @@ export default function Dashboard() {
         <div className="w-full overflow-x-auto flex flex-col gap-4">
           <h2 className="text-2xl font-bold">Sales Trend</h2>
 
-          <p className="text-gray-600">
+          <p
+            className={`text-gray-600 ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+          >
             Track how your revenue changes over time.
           </p>
           <LineChart width={1500} height={400} data={sales}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="label" />
-            <YAxis />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: theme === "light" ? "#1e293b" : "#f8fafc" }}
+            />
+            <YAxis tick={{ fill: theme === "light" ? "#1e293b" : "#f8fafc" }} />
             <Tooltip />
             <Line
               type="monotone"
@@ -168,24 +190,50 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white shadow rounded p-4 border-l-8 border-blue-500">
-          <h2 className="text-gray-500 font-medium">Total Sales</h2>
+        <div
+          className={`${theme === "light" ? "bg-white" : "bg-slate-700"} shadow rounded p-4 border-l-8 border-blue-500`}
+        >
+          <h2
+            className={`text-gray-500 font-medium ${theme === "light" ? "text-gray-500" : "text-slate-200"}`}
+          >
+            Total Sales
+          </h2>
 
           <p className="text-3xl font-bold text-blue-500">${totalSales}</p>
         </div>
 
-        <div className="bg-white shadow rounded p-4 border-l-8 border-green-500">
-          <h2 className="text-gray-500 font-medium">Average</h2>
+        <div
+          className={`${theme === "light" ? "bg-white" : "bg-slate-700"} shadow rounded p-4 border-l-8 border-green-500`}
+        >
+          <h2
+            className={`text-gray-500 font-medium ${theme === "light" ? "text-gray-500" : "text-slate-200"}`}
+          >
+            Average
+          </h2>
 
           <p className="text-3xl font-bold text-green-500">${averageSales}</p>
         </div>
 
-        <div className="bg-white shadow rounded p-4 border-l-8 border-purple-500">
-          <h2 className="text-gray-500 font-medium">Best Performance</h2>
+        <div
+          className={`${theme === "light" ? "bg-white" : "bg-slate-700"} shadow rounded p-4 border-l-8 border-purple-500`}
+        >
+          <h2
+            className={`font-medium ${theme === "light" ? "text-gray-500" : "text-slate-200"}`}
+          >
+            Best Performance
+          </h2>
 
-          <p className="text-xl font-bold text-purple-500">{bestSale?.label}</p>
+          <p
+            className={`text-xl font-bold ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+          >
+            {bestSale?.label}
+          </p>
 
-          <p className="text-gray-600">${bestSale?.total || 0}</p>
+          <p
+            className={`text-gray-600 ${theme === "light" ? "text-slate-950" : "text-slate-50"}`}
+          >
+            ${bestSale?.total || 0}
+          </p>
         </div>
       </div>
     </div>

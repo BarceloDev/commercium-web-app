@@ -61,7 +61,7 @@ export default function Login({ showPassword, setShowPassword }) {
 
   return (
     <div className="bg-blue-500 flex items-center justify-center h-screen">
-      <div className="w-screen md:w-200 h-screen flex flex-col justify-center items-center gap-4 px-4 md:px-8 text-center md:bg-white">
+      <div className="w-screen md:w-200 h-screen flex flex-col justify-center items-center gap-4 px-4 md:px-8 text-center bg-white">
         {" "}
         <img src={logo} alt="" />{" "}
         <p className="font-semibold">

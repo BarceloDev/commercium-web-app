@@ -5,6 +5,7 @@ export default function PopUpEditSale({
   saleToEdit,
   setPopUpEditSaleOpen,
   setSales,
+  theme,
 }) {
   const [formData, setFormData] = useState({
     product_id: saleToEdit.product.id,
@@ -46,7 +47,9 @@ export default function PopUpEditSale({
 
   return (
     <div className="w-screen h-full absolute top-0 left-0 flex items-center justify-center bg-black/50">
-      <div className="bg-white p-6 rounded-2xl">
+      <div
+        className={`${theme === "light" ? "bg-slate-50 text-slate-950" : "bg-slate-800 text-slate-50"} p-6 rounded-2xl transition duration-150 ease-in`}
+      >
         <h2 className="text-xl font-bold mb-4">Edit Sale</h2>
 
         <form onSubmit={editSale}>

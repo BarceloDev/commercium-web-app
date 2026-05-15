@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PopUpSales from "./popups/PopUpSales";
 import PopUpEditSale from "./popups/PopUpEditSale";
 
-export default function Sales() {
+export default function Sales({ theme }) {
   const [sales, setSales] = useState([]);
   const [popUpOpen, setPopUpOpen] = useState(false);
   const [popUpEditSaleOpen, setPopUpEditSaleOpen] = useState(false);
@@ -40,7 +40,9 @@ export default function Sales() {
   }
 
   return (
-    <div className="w-screen h-full py-4 px-4 flex flex-col gap-4">
+    <div
+      className={`w-screen h-full py-4 px-4 flex flex-col gap-4 ${theme === "light" ? "text-slate-950 bg-slate-50" : "text-slate-50 bg-slate-800"} transition duration-150 ease-in`}
+    >
       <h1 className="font-bold text-2xl">Sales:</h1>
       <div className="flex flex-wrap gap-6 justify-center">
         {sales.map((sale) => (
@@ -83,13 +85,18 @@ export default function Sales() {
         </button>
       </div>
       {popUpOpen && (
-        <PopUpSales setPopUpOpen={setPopUpOpen} setSales={setSales} />
+        <PopUpSales
+          setPopUpOpen={setPopUpOpen}
+          setSales={setSales}
+          theme={theme}
+        />
       )}
       {popUpEditSaleOpen && (
         <PopUpEditSale
           saleToEdit={saleToEdit}
           setPopUpEditSaleOpen={setPopUpEditSaleOpen}
           setSales={setSales}
+          theme={theme}
         />
       )}
     </div>

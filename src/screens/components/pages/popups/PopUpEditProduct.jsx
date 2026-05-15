@@ -5,6 +5,7 @@ export default function PopUpEditProduct({
   productToEdit,
   setPopUpEditProductOpen,
   setProducts,
+  theme,
 }) {
   if (!productToEdit) return null;
 
@@ -46,7 +47,9 @@ export default function PopUpEditProduct({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-      <div className="bg-white p-6 rounded-2xl w-full max-w-lg">
+      <div
+        className={`${theme === "light" ? "bg-slate-50 text-slate-950" : "bg-slate-800 text-slate-50"} p-6 rounded-2xl w-full max-w-lg transition duration-150 ease-in`}
+      >
         <h2 className="text-xl font-bold mb-4">Edit Product</h2>
 
         <form onSubmit={editProduct} className="space-y-4">

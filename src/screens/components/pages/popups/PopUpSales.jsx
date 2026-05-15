@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function PopUpSales({ setPopUpOpen, setSales }) {
+export default function PopUpSales({ setPopUpOpen, setSales, theme }) {
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -61,7 +61,9 @@ export default function PopUpSales({ setPopUpOpen, setSales }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 p-4">
-      <div className="bg-white w-full max-w-md rounded-xl p-6 shadow-2xl">
+      <div
+        className={`${theme === "light" ? "bg-slate-50 text-slate-950" : "bg-slate-800 text-slate-50"} w-full max-w-md rounded-xl p-6 shadow-2xl transition duration-150 ease-in`}
+      >
         <h2 className="text-2xl font-bold mb-6">Register Sale</h2>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>

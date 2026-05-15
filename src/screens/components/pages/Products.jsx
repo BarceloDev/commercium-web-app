@@ -3,7 +3,7 @@ import axios from "axios";
 import PopUpProducts from "./popups/PopUpProducts";
 import PopUpEditProduct from "./popups/PopUpEditProduct";
 
-export default function Products() {
+export default function Products({ theme }) {
   const [products, setProducts] = useState([]);
   const [popUpProductsOpen, setPopUpProductsOpen] = useState(false);
   const [popUpEditProductOpen, setPopUpEditProductOpen] = useState(false);
@@ -39,7 +39,9 @@ export default function Products() {
   }
 
   return (
-    <div className="w-screen h-full py-4 px-4 flex flex-col gap-4">
+    <div
+      className={`w-screen h-full py-4 px-4 flex flex-col gap-4 ${theme === "light" ? "text-slate-950 bg-slate-50" : "text-slate-50 bg-slate-800"} transition duration-150 ease-in`}
+    >
       <h1 className="font-bold text-2xl">Products:</h1>
       <div className="flex flex-wrap gap-6 justify-center">
         {products.map((product) => {
@@ -80,6 +82,7 @@ export default function Products() {
         <PopUpProducts
           setPopUpProductsOpen={setPopUpProductsOpen}
           setProducts={setProducts}
+          theme={theme}
         />
       )}
       {popUpEditProductOpen && (
@@ -87,6 +90,7 @@ export default function Products() {
           productToEdit={productToEdit}
           setPopUpEditProductOpen={setPopUpEditProductOpen}
           setProducts={setProducts}
+          theme={theme}
         />
       )}
     </div>
